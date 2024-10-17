@@ -26,4 +26,5 @@ JS Back-End @ SoftUni
     * Set view directory
     * Set view engine
     * Add home view
+    * Add layout
 

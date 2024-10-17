@@ -4,7 +4,7 @@ const homeController = Router();
 
 homeController.get('/', (req, res) => {
     // res.send('It works!!!!!!!!!!!!!');
-    res.render('home/index', { layout: false });
+    res.render('home/index');
 })
 
 export default homeController;
