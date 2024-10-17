@@ -46,4 +46,6 @@ JS Back-End @ SoftUni
     * Add auth service
     * Install  bcrypt `npm i bcrypt`
     * Hash password
+    * Check for password missmatch
+    * Check if user exists
 

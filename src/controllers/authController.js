@@ -8,17 +8,15 @@ authController.get('/register', (req, res) => {
 });
 
 authController.post('/register', async (req, res) => {
-
     const { username, email, password, rePassword } = req.body;
 
-    // TODO: check rePassword
     try {
-        await authService.register(username, email, password);
+        await authService.register(username, email, password, rePassword);
         res.redirect('/auth/login')
     } catch (error) {
         // TODO: add error
         res.render('auth/register', { title: 'Register Page', username, email });
-    }
+    };
 
 })
 
