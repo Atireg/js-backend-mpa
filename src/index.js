@@ -1,1 +1,13 @@
-console.log('It works!');
+import express from 'express';
+
+const app = express();
+
+app.use('/static', express.static('public'));
+
+app.use(express.urlencoded({ extended: false }));
+
+app.get('/', (req, res) => {
+    res.send('It works!')
+});
+
+app.listen(3000, () => console.log('Server is running on http://localhost:3000'));
