@@ -37,4 +37,8 @@ JS Back-End @ SoftUni
     Change db name
     * Connect to local db
     * Add user model
+5. Register 
+    * Fix navigation links
+    * Add template
+    * Add authentication controller
 
