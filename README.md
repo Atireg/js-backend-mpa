@@ -27,4 +27,8 @@ JS Back-End @ SoftUni
     * Set view engine
     * Add home view
     * Add layout
+    * Add partials dir
+    ---TODOS----
+    Change the content of main.hbs & layout.hbs
+    * Add dynamic page title
 
