@@ -44,4 +44,6 @@ JS Back-End @ SoftUni
     * Render page
     * POST action
     * Add auth service
+    * Install  bcrypt `npm i bcrypt`
+    * Hash password
 
