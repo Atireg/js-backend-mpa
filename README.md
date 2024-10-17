@@ -28,8 +28,13 @@ JS Back-End @ SoftUni
     * Add home view
     * Add layout
     * Add partials dir
-    ---TODOS----
+    ---TODOS---
     Change the content of main.hbs & layout.hbs
     * Add dynamic page title
 4. Add database
+    * Install mongoose `npm i mongoose`
+    ---TODOS---
+    Change db name
+    * Connect to local db
+    * Add user model
 
