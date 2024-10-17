@@ -18,6 +18,16 @@ authController.post('/register', async (req, res) => {
         res.render('auth/register', { title: 'Register Page', username, email });
     };
 
-})
+});
+
+authController.get('/login', (req, res) => {
+    res.render('auth/login', { title: 'Login Page' });
+});
+
+authController.post('/auth/login', (req, res) => {
+    const { email, password } = req.body;
+
+    const token = authService.login(email, body);
+});
 
 export default authController;

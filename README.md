@@ -14,6 +14,8 @@ JS Back-End @ SoftUni
     * Add debugging launch.json file
         "name": "Nodemon Debug",
         "program": "${workspaceFolder}/src/index.js"
+    * Add env variabe file
+    * Install and config dotenv `npm i dotenv`
 2. Setup Express
     * Install express `npm i express`
     * Add static resources
@@ -42,10 +44,19 @@ JS Back-End @ SoftUni
     * Add template
     * Add authentication controller
     * Render page
-    * POST action
+    * Add POST action
     * Add auth service
     * Install  bcrypt `npm i bcrypt`
     * Hash password
     * Check for password missmatch
     * Check if user exists
+6. Setup Login
+    * Install jsonwebtoken `npm i jsonwebtoken`
+    * Convert jsonwebtoken to Promise-based lib
+    * Install cookie-parser `npm i cookie-parser`
+    * Add cookie parser middleware
+    * Add login page
+    * Add POST action
+    * Add authService login method
+    * Generate jwt
 
