@@ -20,4 +20,9 @@ JS Back-End @ SoftUni
     * Configure static middleware (!folder static is renamed to public --> `app.use('/static', express.static('public'))`)
     * Add body parser (!if we need to parse more complex data it should be true --> `app.use(express.urlencoded({ extended: false }));`)
     * Add modular routes (routes.js file + add home controller)
+3. Setup Handlebars
+    * Install handlebars `npm i express-handlebars`
+    * Add view engine
+    * Set view directory
+    * Set view engine
 
