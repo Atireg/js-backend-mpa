@@ -17,7 +17,7 @@ JS Back-End @ SoftUni
 2. Setup Express
     * Install express `npm i express`
     * Add static resources
-    * Configure static middleware (!folder static is renamed to public --> `app.use('/static', express.static('public'))`)
+    * Configure static middleware (!folder static is renamed to public --> `app.use('/static', express.static('src/public'))`)
     * Add body parser (!if we need to parse more complex data it should be true --> `app.use(express.urlencoded({ extended: false }));`)
     * Add modular routes (routes.js file + add home controller)
 3. Setup Handlebars
@@ -25,4 +25,5 @@ JS Back-End @ SoftUni
     * Add view engine
     * Set view directory
     * Set view engine
+    * Add home view
 
