@@ -31,4 +31,5 @@ JS Back-End @ SoftUni
     ---TODOS----
     Change the content of main.hbs & layout.hbs
     * Add dynamic page title
+4. Add database
 
