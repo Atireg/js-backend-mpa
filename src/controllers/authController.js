@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import authService from '../services/authService.js';
+import { AUTH_COOKIE_NAME } from '../constants.js';
 
 const authController = Router();
 
@@ -12,7 +13,7 @@ authController.post('/register', async (req, res) => {
 
     try {
         await authService.register(username, email, password, rePassword);
-        res.redirect('/auth/login')
+        res.redirect('/auth/login');
     } catch (error) {
         // TODO: add error
         res.render('auth/register', { title: 'Register Page', username, email });
@@ -24,10 +25,19 @@ authController.get('/login', (req, res) => {
     res.render('auth/login', { title: 'Login Page' });
 });
 
-authController.post('/auth/login', (req, res) => {
+authController.post('/login', async (req, res) => {
     const { email, password } = req.body;
+    try {
+        const token = await authService.login(email, password);  
+        res.cookie(AUTH_COOKIE_NAME, token);
+        res.redirect('/');
+    } catch (error) {
+    //TODO Send error message
+        res.render('auth/login', { title: 'Login Page', email });
+    }
 
-    const token = authService.login(email, body);
+
+   
 });
 
 export default authController;
