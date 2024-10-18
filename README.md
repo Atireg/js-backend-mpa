@@ -74,4 +74,35 @@ JS Back-End @ SoftUni
     * Handle login errors
 10. Dynamic navigation
 
+____________________________________________________________
+
+CHECK IF THE MAIN ELEMENT SHOULD BE INSIDE THE MAIN LAYOUT (THERE COULD BE STYLES INSIDE!!!)
+
+NEXT STEPS
+
+    [ ] Modify views
+        *  login.hbs
+        *  register.hbs
+        *  404.hbs
+        *  index.hbs
+        *  main.hbs
+        (Pay attention at the if/else conditions in the hbs files and the titles!)
+
+    [ ] Add static files (public/ css & images)
+
+    [ ] Copy/paste the rest of the html files
+
+    [ ] Modify DB name
+
+    [ ] Modify User model
+        (Check if the register is only { email & password } or { username, email & password })
+
+    [ ] Modify the catalog page (create.html --> create.hbs)
+
+    [ ] Create a volcanoController.js (GET & POST reqs) and add it in routes.js
+
+    [ ] Modify the paths in main.hbs
+
+    [ ] Create a volcanoService.js and Volcano.js model
+
 
