@@ -8,4 +8,9 @@ homeController.get('/', (req, res) => {
     res.render('home/index', { title: 'Home Page' });
 })
 
+//TODO Test if the authorisation works --> remove this part
+homeController.get('/authorized', (req, res) => {
+    res.send(req.user);
+})
+
 export default homeController;

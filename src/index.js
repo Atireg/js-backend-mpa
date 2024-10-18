@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import 'dotenv/config'
 
 import routes from './routes.js';
+import { authMiddleware } from './middlewares/authMiddleware.js';
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.set('view engine', 'hbs');
 app.use('/static', express.static('src/public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(authMiddleware)
 app.use(routes);
 
 // Initial test

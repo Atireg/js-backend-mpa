@@ -62,4 +62,9 @@ JS Back-End @ SoftUni
     * Return jwt with http only cookie
     * Auto login after register
 7. Logout
+8. Authorization
+    * Add auth middleware
+9. Error handling
+10. Dynamic navigation
+
 
