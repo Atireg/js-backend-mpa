@@ -59,6 +59,7 @@ JS Back-End @ SoftUni
     * Add POST action
     * Add authService login method
     * Generate jwt
-    * Return jwt with cookie
+    * Return jwt with http only cookie
     * Auto login after register
+7. Logout
 

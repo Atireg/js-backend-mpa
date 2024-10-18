@@ -12,8 +12,9 @@ authController.post('/register', async (req, res) => {
     const { username, email, password, rePassword } = req.body;
 
     try {
-        await authService.register(username, email, password, rePassword);
-        res.redirect('/auth/login');
+        const token = await authService.register(username, email, password, rePassword);
+        res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
+        res.redirect('/');
     } catch (error) {
         // TODO: add error
         res.render('auth/register', { title: 'Register Page', username, email });
@@ -29,15 +30,17 @@ authController.post('/login', async (req, res) => {
     const { email, password } = req.body;
     try {
         const token = await authService.login(email, password);  
-        res.cookie(AUTH_COOKIE_NAME, token);
+        res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
         res.redirect('/');
     } catch (error) {
     //TODO Send error message
         res.render('auth/login', { title: 'Login Page', email });
-    }
+    }  
+});
 
-
-   
+authController.get('/logout', (req, res) => {
+    res.clearCookie(AUTH_COOKIE_NAME);
+    res.redirect('/');
 });
 
 export default authController;
