@@ -53,6 +53,7 @@ JS Back-End @ SoftUni
 6. Setup Login
     * Install jsonwebtoken `npm i jsonwebtoken`
     * Convert jsonwebtoken to Promise-based lib
+    * Add typescript declaration documentation
     * Install cookie-parser `npm i cookie-parser`
     * Add cookie parser middleware
     * Add login page

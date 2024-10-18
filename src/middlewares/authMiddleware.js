@@ -10,10 +10,10 @@ export const authMiddleware = async (req, res, next) => {
 
     try {
         const decodedToken = await jwt.verify(token, process.env.JTW_SECRET);
-        
+
         req.user = decodedToken;
         req.isAuthenticated = true;
-        
+
         res.locals.user = decodedToken;
         res.locals.isAuthenticated = true;
         
