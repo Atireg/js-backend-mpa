@@ -6,13 +6,13 @@ const volcanoController = Router();
 
 volcanoController.get('/', async (req, res) => {
     const volcanoes = await volcanoService.getAll().lean();
-    res.render('volcano', { volcanoes });
+    res.render('volcano', { volcanoes, title: 'Catalog' });
 })
 
 volcanoController.get('/create', (req, res) => {
     const volcanoTypeData = getVolcanoTypeViewData({ });
 
-    res.render('volcano/create', { volcanoTypes: volcanoTypeData });
+    res.render('volcano/create', { volcanoTypes: volcanoTypeData, title: 'Create' });
 });
 
 volcanoController.post('/create', async (req, res) => {
@@ -27,14 +27,14 @@ volcanoController.post('/create', async (req, res) => {
         const error = getErrorMessage(err);
         const volcanoTypeData = getVolcanoTypeViewData(volcanoData);
 
-        res.render('volcano/create', { volcano: volcanoData, volcanoTypes: volcanoTypeData, error });
+        res.render('volcano/create', { volcano: volcanoData, volcanoTypes: volcanoTypeData, error, title: 'Create' });
     };
     
 });
 
 volcanoController.get('/:volcanoId/details', async (req, res) => {
     const volcano = await volcanoService.getOne(req.params.volcanoId).lean();
-    res.render('volcano/details', { volcano })
+    res.render('volcano/details', { volcano, title: `${volcano.name} Details` })
 });
 
 function getVolcanoTypeViewData({typeVolcano}){
