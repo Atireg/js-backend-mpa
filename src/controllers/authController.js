@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import authService from '../services/authService.js';
 import { AUTH_COOKIE_NAME } from '../constants.js';
+import { getErrorMessage } from '../utils/errorUtils.js';
 
 const authController = Router();
 
@@ -15,9 +16,9 @@ authController.post('/register', async (req, res) => {
         const token = await authService.register(username, email, password, rePassword);
         res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
         res.redirect('/');
-    } catch (error) {
-        // TODO: add error
-        res.render('auth/register', { title: 'Register Page', username, email });
+    } catch (err) {
+        const error = getErrorMessage(err);
+        res.render('auth/register', { title: 'Register Page', username, email, error });
     };
 
 });
@@ -32,8 +33,8 @@ authController.post('/login', async (req, res) => {
         const token = await authService.login(email, password);  
         res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
         res.redirect('/');
-    } catch (error) {
-    //TODO Send error message
+    } catch (err) {
+        //TODO Send error message
         res.render('auth/login', { title: 'Login Page', email });
     }  
 });

@@ -67,6 +67,7 @@ JS Back-End @ SoftUni
     * Check and verify token
     * Add a route guard (isAuth) in authMiddleware
 9. Setup Error handling
+    * Add error notification
 10. Dynamic navigation
 
 
