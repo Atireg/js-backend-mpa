@@ -5,28 +5,9 @@ import { getErrorMessage } from '../utils/errorUtils.js';
 const volcanoController = Router();
 
 volcanoController.get('/', async (req, res) => {
-    const volcanoes = await volcanoService.getAll();
+    const volcanoes = await volcanoService.getAll().lean();
     res.render('volcano', { volcanoes });
 })
-
-function getVolcanoTypeViewData({typeVolcano}){
-    const volcanoTypes = [
-        'Supervolcanoes',
-        'Submarine',
-        'Subglacial',
-        'Mud',
-        'Stratovolcanoes',
-        'Shield'
-    ];
-
-    const viewData = volcanoTypes.map(type => ({
-        value: type,
-        label: type,
-        selected: typeVolcano === type ? 'selected' : ''
-    }));
-
-    return viewData;
-}
 
 volcanoController.get('/create', (req, res) => {
     const volcanoTypeData = getVolcanoTypeViewData({ });
@@ -49,6 +30,30 @@ volcanoController.post('/create', async (req, res) => {
         res.render('volcano/create', { volcano: volcanoData, volcanoTypes: volcanoTypeData, error });
     };
     
-})
+});
+
+volcanoController.get('/:volcanoId/details', async (req, res) => {
+    const volcano = await volcanoService.getOne(req.params.volcanoId).lean();
+    res.render('volcano/details', { volcano })
+});
+
+function getVolcanoTypeViewData({typeVolcano}){
+    const volcanoTypes = [
+        'Supervolcanoes',
+        'Submarine',
+        'Subglacial',
+        'Mud',
+        'Stratovolcanoes',
+        'Shield'
+    ];
+
+    const viewData = volcanoTypes.map(type => ({
+        value: type,
+        label: type,
+        selected: typeVolcano === type ? 'selected' : ''
+    }));
+
+    return viewData;
+};
 
 export default volcanoController;
