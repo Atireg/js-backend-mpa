@@ -19,6 +19,7 @@ mongoose.connect(url, {dbName: 'volcanoes'}) //TODO change db name
 // Setup view engine
 app.engine('hbs', handlebars.engine({
     extname: 'hbs',
+
 }));
 app.set('views', 'src/views');
 app.set('view engine', 'hbs');

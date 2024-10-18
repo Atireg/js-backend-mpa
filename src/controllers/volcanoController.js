@@ -4,6 +4,11 @@ import { getErrorMessage } from '../utils/errorUtils.js';
 
 const volcanoController = Router();
 
+volcanoController.get('/', async (req, res) => {
+    const volcanoes = await volcanoService.getAll();
+    res.render('volcano', { volcanoes });
+})
+
 function getVolcanoTypeViewData({typeVolcano}){
     const volcanoTypes = [
         'Supervolcanoes',
@@ -24,7 +29,9 @@ function getVolcanoTypeViewData({typeVolcano}){
 }
 
 volcanoController.get('/create', (req, res) => {
-    res.render('volcano/create');
+    const volcanoTypeData = getVolcanoTypeViewData({ });
+
+    res.render('volcano/create', { volcanoTypes: volcanoTypeData });
 });
 
 volcanoController.post('/create', async (req, res) => {
