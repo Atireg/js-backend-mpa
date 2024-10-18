@@ -68,6 +68,9 @@ JS Back-End @ SoftUni
     * Add a route guard (isAuth) in authMiddleware
 9. Setup Error handling
     * Add error notification
+    * Add error message util
+    * Handle register errors
+    * Handle login errors
 10. Dynamic navigation
 
 
