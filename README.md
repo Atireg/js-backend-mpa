@@ -61,10 +61,12 @@ JS Back-End @ SoftUni
     * Generate jwt
     * Return jwt with http only cookie
     * Auto login after register
-7. Logout
-8. Authorization
+7. Setup Logout
+8. Setup Authorization
     * Add auth middleware
-9. Error handling
+    * Check and verify token
+    * Add a route guard (isAuth) in authMiddleware
+9. Setup Error handling
 10. Dynamic navigation
 
 
