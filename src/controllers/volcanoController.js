@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import volcanoService from '../services/volcanoService.js';
 import { getErrorMessage } from '../utils/errorUtils.js';
+import { isAuth } from '../middlewares/authMiddleware.js';
 
 const volcanoController = Router();
 
@@ -9,13 +10,13 @@ volcanoController.get('/', async (req, res) => {
     res.render('volcano', { volcanoes, title: 'Catalog' });
 })
 
-volcanoController.get('/create', (req, res) => {
+volcanoController.get('/create', isAuth, (req, res) => {
     const volcanoTypesData = getVolcanoTypeViewData({ });
 
     res.render('volcano/create', { volcanoTypes: volcanoTypesData, title: 'Create' });
 });
 
-volcanoController.post('/create', async (req, res) => {
+volcanoController.post('/create', isAuth, async (req, res) => {
     const volcanoData = req.body;
     const userId = req.user._id;
 
@@ -45,9 +46,13 @@ volcanoController.get('/:volcanoId/details', async (req, res) => {
     res.render('volcano/details', { volcano, title: `${volcano.name} Details`, isOwner, hasVoted, voteCount })
 });
 
-volcanoController.get('/:volcanoId/vote', async (req, res) => {
+volcanoController.get('/:volcanoId/vote', isAuth, async (req, res) => {
     const volcanoId = req.params.volcanoId;
     const userId = req.user._id;
+
+    if(isVolcanoOwner(volcanoId, userId)){
+        return res.redirect('/404');
+    };
 
     try {
         await volcanoService.vote(volcanoId, userId); 
@@ -58,8 +63,13 @@ volcanoController.get('/:volcanoId/vote', async (req, res) => {
     }
 });
 
-volcanoController.get('/:volcanoId/delete', async (req, res) => {
+volcanoController.get('/:volcanoId/delete', isAuth, async (req, res) => {
     const volcanoId = req.params.volcanoId;
+    const userId = req.user._id;
+
+    if(!isVolcanoOwner(volcanoId, userId)){
+        return res.redirect('/404');
+    };
 
     try {
         await volcanoService.remove(volcanoId);
@@ -70,19 +80,26 @@ volcanoController.get('/:volcanoId/delete', async (req, res) => {
     }
 });
 
-volcanoController.get('/:volcanoId/edit', async (req, res) => {
+volcanoController.get('/:volcanoId/edit', isAuth, async (req, res) => {
     const volcano = await volcanoService.getOne(req.params.volcanoId).lean();
     const volcanoTypesData = getVolcanoTypeViewData(volcano);
+    const isOwner = volcano.owner.toString() === req.user._id;
+
+    if(!isOwner){
+        return res.redirect('/404');
+    };
 
     res.render('volcano/edit', { volcano, volcanoTypes: volcanoTypesData, title: 'Edit Page' });
 });
 
-volcanoController.post('/:volcanoId/edit', async (req, res) => {
+volcanoController.post('/:volcanoId/edit', isAuth, async (req, res) => {
     const volcanoData = req.body;
     const volcanoId = req.params.volcanoId;
-    // console.log(volcanoData);
     
-
+    if(!isVolcanoOwner(volcanoId, req.user._id)){
+        return res.redirect('/404');
+    };
+    
     try {
         await volcanoService.edit(volcanoId, volcanoData);
         res.redirect(`/volcanoes/${volcanoId}/details`);
@@ -111,5 +128,12 @@ function getVolcanoTypeViewData({typeVolcano}){
 
     return viewData;
 };
+
+async function isVolcanoOwner(volcanoId, userId){
+    const volcano = await volcanoService.getOne(volcanoId).lean();
+    const isOwner = volcano.owner.toString() === userId;
+
+    return isOwner;
+}
 
 export default volcanoController;
