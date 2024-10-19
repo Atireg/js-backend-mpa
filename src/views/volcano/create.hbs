@@ -9,17 +9,14 @@
             <label>Elevation:</label>
             <input type="number" id="elevations" name="elevation" value="{{volcano.elevation}}" placeholder="...">
             <label>Year of Last Eruption:</label>
-            <input type="number" id="last-year-eruption" name="lastEruption" value="{{volcano.lastEruption}}" placeholder="...">
+            <input type="number" id="last-year-eruption" name="lastEruption" value="{{volcano.lastEruption}}"
+                placeholder="...">
             <label>Image:</label>
             <input type="text" id="image" name="image" value="{{volcano.image}}" placeholder="http://...">
             <label>Volcano Type:</label>
-            <select id="type" name="typeVolcano">
-                {{#each volcanoTypes}}
-                <option value="{{value}}" {{selected}}>{{label}}</option>
-                {{/each}}
-            </select>
+            {{>volcanoTypeSelect}}
             <label>Description:</label>
-            <textarea id="description" name="description" value="{{volcano.description}}" placeholder="..."></textarea>
+            <textarea id="description" name="description" placeholder="...">{{volcano.description}}</textarea>
             <input type="submit" id="btn" value="Submit"></input>
         </form>
     </div>
