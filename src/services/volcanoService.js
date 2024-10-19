@@ -1,8 +1,20 @@
 import Volcano from "../models/Volcano.js"
 
 const volcanoService = {
-    getAll(){
-        return Volcano.find();
+    getAll(filter = {}){
+        const query = Volcano.find();
+
+        if(filter.name){
+            query.find({ name: { $regex: filter.name, $options: 'i' } })
+        }
+        
+        if(filter.typeVolcano){
+            query.find({ typeVolcano: filter.typeVolcano });
+        }
+
+        return query;
+
+        // return Volcano.find(); BEFORE THE SEARCH
     },
     getOne(volcanoId){
         return Volcano.findById(volcanoId);

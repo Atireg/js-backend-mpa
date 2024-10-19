@@ -33,6 +33,12 @@ volcanoController.post('/create', isAuth, async (req, res) => {
     
 });
 
+volcanoController.get('/search', async (req, res) => {
+    const volcanoes = await volcanoService.getAll(req.query).lean(); 
+
+    res.render('volcano/search', { title: 'Search', volcanoes })
+});
+
 volcanoController.get('/:volcanoId/details', async (req, res) => {
     const volcano = await volcanoService.getOne(req.params.volcanoId).lean();
     const isOwner = volcano.owner.toString() === req.user?._id;
