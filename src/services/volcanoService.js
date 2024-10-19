@@ -8,7 +8,7 @@ const volcanoService = {
         return Volcano.findById(volcanoId);
     },
     create(volcanoData, userId){
-        return Volcano.create({ ...volcanoData, owner: userId });       
+        return Volcano.create({ ...volcanoData, owner: userId, runValidators: true });       
     },
     vote(volcanoId, userId){
         return Volcano.findByIdAndUpdate(volcanoId, { $push: { voteList: userId } });
