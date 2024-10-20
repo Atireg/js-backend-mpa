@@ -73,3 +73,24 @@ JS Back-End @ SoftUni
     * Handle register errors
     * Handle login errors
 10. Dynamic navigation
+
++++++++++
+
+11. Modify views
+    *  login.hbs
+    *  register.hbs
+    *  404.hbs
+    *  index.hbs
+    *  main.hbs
+    (Pay attention at the if/else conditions in the hbs files and the titles!)
+
+12. Add static files (public/ css & images)
+
+13. Copy/paste the rest of the html files
+
+14. Modify DB name
+
+15. Modify User model
+    (Check if the register is only { email & password } or { username, email & password })
+
+...
