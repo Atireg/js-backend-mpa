@@ -34,9 +34,11 @@ volcanoController.post('/create', isAuth, async (req, res) => {
 });
 
 volcanoController.get('/search', async (req, res) => {
-    const volcanoes = await volcanoService.getAll(req.query).lean(); 
+    const query = req.query;
+    const volcanoes = await volcanoService.getAll(query).lean();
+    const volcanoTypes = getVolcanoTypeViewData(query);
 
-    res.render('volcano/search', { title: 'Search', volcanoes })
+    res.render('volcano/search', { title: 'Search', volcanoes, query, volcanoTypes })
 });
 
 volcanoController.get('/:volcanoId/details', async (req, res) => {
