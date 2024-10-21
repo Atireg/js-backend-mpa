@@ -1,7 +1,9 @@
-# js-backend-app
-JS Back-End @ SoftUni
+# js-backend-mpa
+JS-Backend-App for MultiPageApp @ SoftUni
 
 # STEPS
+
+BASE
 
 1. Initialiaze project 
     * Initialize node package `npm init -y`
@@ -74,23 +76,106 @@ JS Back-End @ SoftUni
     * Handle login errors
 10. Dynamic navigation
 
-+++++++++
+FURTHER STEPS
 
-11. Modify views
-    *  login.hbs
-    *  register.hbs
-    *  404.hbs
-    *  index.hbs
-    *  main.hbs
-    (Pay attention at the if/else conditions in the hbs files and the titles!)
+[X] Modify views
+    [X]  login.hbs
+    [X]  register.hbs
+    [X]  404.hbs 
+    [X]  index.hbs
+    [X]  main.hbs
+    
+    Pay attention at the:
+        if/else conditions,
+        the titles,
+        add value,
+        add id (if needed),
+        change the hrefs,
+        the methods!!!
 
-12. Add static files (public/ css & images)
+[X] Add static files (public/ css & images)
 
-13. Copy/paste the rest of the html files
+[X] Copy/paste the rest of the html files
 
-14. Modify DB name
+[X] Modify DB name
 
-15. Modify User model
-    (Check if the register is only { email & password } or { username, email & password })
+[X] Modify User model
+    Check if the register is only
+    { email & password } or { username, email & password }
 
-...
+[X] CREATE
+
+    [X] Add Create page --> views/volcano/create.hbs
+
+    [X] Create a volcanoController.js
+        volcanoController.get('/create')
+        add it to the routes.js
+        volcanoController.post('/create')
+
+    [X] Add volcanoService.js ---> create method .create
+
+    [X] Create a volcano model ---> use volcanoService.create in the volcanoController
+
+    [X] Save the user (owner) too
+
+    [X] Add try/catch in the volcanoController for .post --> link it to the getErrorMessage from erroUtils.js
+    
+    [X] Add values to the form in create.hbs
+ 
+    [X] Add a value for the drop down selection too --> add a function in volcanoController + create a partial
+
+[X] Fix the navigation by adding a conditional isAuthenticated in the main.hbs
+
+[X] CATALOG
+
+    [X] Add volcanoController.get('/') + render the catalog page
+
+[X] DETAILS
+
+    [X] Add volcanoController.get('/:volcanoId/details') + render the details page
+
+    [X] Add getOne in the volcanoService.js DON'T FORGET TO ADD .lean()
+
+    [X] Create isOwner in volcanoController('/:volcanoId/details')
+
+    [X] Add isOwner and isAuthenticated to details.hbs + conditional statements
+
+    [X] Add new Object 'boughtBy' to the volcano model
+
+    [X] Add new service 'vote' to volcanoService.js
+
+    [X] Add volcanoController.get on '/:volcanoId/vote'
+
+    [X] Add hasBought & voteCount to the volcanoController.get on'/:volcanoId/details'
+
+[X] DELETE
+
+    [X] In the volcanoController + in the volcanoService
+    [X] Maybe add an error page (optional)
+
+[X] EDIT
+
+    [X] Add a get in volcanoController + edit.hbs
+
+    [X] Add a post in volcanoController + in the volcanoService (DON'T FORGET { runValidators: true } in the Service)
+
+    [X] Add error handling for non owners (optional!)
+
+[X] ROUT GUARDS
+
+    [X] Add isAuth to logout in authController.js
+
+    [X] Add isAuth to create (post & get) in volcanoController.js
+
+    [X] Add isAuth to vote (post & get) in volcanoController.js
+
+    [X] Add check for isOwner to edit and vote
+
+[X] VALIDATION & ERROR HANDLING
+
+[X] SEARCH
+
+    [X] Add a get req 'search' to the volcanoController (BUT BEFORE DETAILS!)
+
+    [X] For the search.hbs METHOD:GET + make sure to put all names
+
