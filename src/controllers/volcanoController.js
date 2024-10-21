@@ -58,9 +58,9 @@ volcanoController.get('/:volcanoId/vote', isAuth, async (req, res) => {
     const volcanoId = req.params.volcanoId;
     const userId = req.user._id;
 
-    // if(!isVolcanoOwner(volcanoId, userId)){
-    //     return res.redirect('/404');
-    // };
+    if(isVolcanoOwner(volcanoId, userId)){
+        return res.redirect('/404');
+    };
 
     try {
         await volcanoService.vote(volcanoId, userId); 
