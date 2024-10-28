@@ -1,5 +1,5 @@
 # js-backend-mpa
-JS-Backend-App for MultiPageApp @ SoftUni
+This is a JS-Backend-App for MPA using handlebars & mongoDB @ SoftUni
 
 # STEPS
 
